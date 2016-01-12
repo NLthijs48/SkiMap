@@ -15,17 +15,9 @@ maps = Obs.create
 	wildkogel:
 		button: 'Wildkogel'
 		image: 'arenaWildkogel.jpg'
-currentPage = Obs.create ''
+currentPage = Obs.create 'konigsleiten'
 
 exports.render = !->
-	# Determine page
-	Obs.observe !->
-		newCurrentPage = Page.state.get(0)
-		area = maps.ref(newCurrentPage)
-		maps.iterate (candidate) !->
-			area = candidate if !area.peek()?
-		currentPage.set area.key()
-
 	Dom.div !->
 		Dom.style
 			position: 'absolute'
@@ -74,8 +66,9 @@ renderPages = !->
 				bottom: '0'
 				left: '0'
 			Obs.observe !->
+				log 'area.key()=', area.key(), 'current=', currentPage.get()
 				if currentPage.get() is area.key()
-					Dom.style display: 'bhack'
+					Dom.style display: 'block'
 				else
 					Dom.style display: 'none'
 			Obs.observe !->
