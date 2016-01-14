@@ -12,9 +12,15 @@ maps = Obs.create
 	konigsleiten:
 		button: 'Konigsleiten'
 		image: 'konigsleiten.jpg'
+		order: 1
 	wildkogel:
 		button: 'Wildkogel'
 		image: 'arenaWildkogel.jpg'
+		order: 2
+	bus:
+		button: 'Bus'
+		image: 'bus.jpg'
+		order: 3
 currentPage = Obs.create 'konigsleiten'
 
 exports.render = !->
@@ -55,6 +61,8 @@ renderButtons = !->
 					currentPage.set area.key()
 		maps.iterate (area) !->
 			renderButton area
+		, (area) ->
+			area.get('order')||0
 
 renderPages = !->
 	maps.iterate (area) !->
@@ -66,13 +74,12 @@ renderPages = !->
 				bottom: '0'
 				left: '0'
 			Obs.observe !->
-				log 'area.key()=', area.key(), 'current=', currentPage.get()
 				if currentPage.get() is area.key()
 					Dom.style display: 'block'
 				else
 					Dom.style display: 'none'
 			Obs.observe !->
-				height = Page.height()-200
+				height = Page.height()-50
 				Photoview.render
 					url: Plugin.resourceUri(area.get('image'))
 					fullHeight: true
