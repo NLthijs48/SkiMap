@@ -24,14 +24,19 @@ maps = Obs.create
 currentPage = Obs.create 'konigsleiten'
 
 exports.render = !->
+	Dom.style
+		ChildMargin: '0'
 	Dom.div !->
 		Dom.style
 			position: 'absolute'
 			top: '0'
 			right: '0'
 			left: '0'
+			overflow: 'hidden'
 		renderButtons()
 	Dom.div !->
+		Dom.style
+			height: '100%'
 		renderPages()
 
 renderButtons = !->
