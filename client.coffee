@@ -43,7 +43,7 @@ renderButtons = !->
 	Dom.div !->
 		Dom.style
 			Box: 'horizontal center'
-			margin: '0 -1px 0 -1px'
+			margin: '50px -1px 0 -1px'
 		Dom.css '.areaButton.tap':
 			background: 'linear-gradient(to bottom, #4fa7ff 0%,#0277ed 100%) !important'
 		# Render buttons
@@ -74,7 +74,7 @@ renderPages = !->
 		Dom.div !->
 			Dom.style
 				position: 'absolute'
-				top: '50px'
+				top: '100px'
 				right: '0'
 				bottom: '0'
 				left: '0'
@@ -87,5 +87,5 @@ renderPages = !->
 				height = Page.height()-50
 				Photoview.render
 					url: Plugin.resourceUri(area.get('image'))
-					fullHeight: true
 					height: height
+					fullHeight: true
